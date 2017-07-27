@@ -1,4 +1,5 @@
 <!--자바스크립트로 비밀번호 무조건 6자리 이상이여야 버튼이 눌러지게 해야함.-->
+
 	<div class="container">
 	    <div class="panel-heading">
            <div class="panel-title text-center">
@@ -30,26 +31,6 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label for="password" class="cols-sm-2 control-label">Password</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<%= password_field_tag :password, '', placeholder: "Enter your Password", class: 'form-control', id: "password" %>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-								<%= password_field_tag :password_confirmation, '', placeholder: "Confirm your Password", class: 'form-control', id: "confirm" %>
-							</div>
-						</div>
-					</div>
-
 					<div class="form-group ">
 						<%= button_tag 'Register', type: "submit", class: "btn btn-primary btn-lg btn-block login-button"%>
 					</div>
@@ -60,9 +41,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="fb-login-button" data-max-rows="1" data-scope="public_profile, email" onlogin="checkLoginState();" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
-	<div id="status"></div>
-	<div id="fb-root"></div>
 	
 <script>
   // Load the SDK asynchronously
@@ -74,30 +52,7 @@
   js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.10&appId=873665329475621";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-  
-  // 이것은 페북 로그인 버튼 눌렀을 때 페이지넘어가게 하기
-  function post(path, params, method) {
-    method = method || "post"; // Set method to post by default if not specified.
 
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
-        }
-      }
-    document.body.appendChild(form);
-    form.submit();
-  }
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
@@ -105,8 +60,6 @@
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
-    console.log(1);
-    post("/users/sign_up/facebook",response,"post");
   }
 
   window.fbAsyncInit = function() {
@@ -117,8 +70,6 @@
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.8' // use graph api version 2.8
   });
-
-
 
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
@@ -131,7 +82,6 @@
   //    your app or not.
   //
   // These three cases are handled in the callback function.
-  
 
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
@@ -156,9 +106,6 @@
       testAPI();
     } 
     else if (response.status === 'not_authorized') {
-            // The person is not logged into your app or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
     }
     else {
       // The person is not logged into your app or we are unable to tell.
@@ -178,10 +125,6 @@
         'Thanks for logging in, ' + response.name + '!';
     });
   }
-  
-  
-
-
   
 </script>
 

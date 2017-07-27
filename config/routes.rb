@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+  
+  get 'home/shelf'
+  
+  
   devise_for :users, module: 'users'
+  devise_scope :user do
+  get "users/sign_up/facebook", to: "users/registrations#new_facebook", as: "new_user_facebook"
+ end
   get 'comment/create'
 
   get 'comment/delete'
@@ -11,6 +18,7 @@ Rails.application.routes.draw do
 
   post '/posts/:id/comments/create' => 'comment#create'
   get '/posts/:id/comments/destroy' => 'comment#delete'
+
 
 
 

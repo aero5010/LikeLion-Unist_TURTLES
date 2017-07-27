@@ -6,24 +6,31 @@
     <%= p.id %>
     <%= p.title %>
     <br>
-    <%= p.posting %>
+    <%= p.book %> &nbsp&nbsp <%= p.author %>
+    
+    <textarea>
+      <%= p.posting %>
+    </textarea>
+    
     <br>
+    
     <p>====hashtags====</p>
     <% p.hashtags.each do |h| %>
       <%= h.name %>
     <% end %>
     <p>================</p>
     <br>
-    <a href='/edit/<%=p.id %>'>[수정]</a>
-    <a href='/delete/<%= p.id %>'>[삭제]</a>
-    <br>
+    
+    <!--<a href='/edit/<%=p.id %>'>[수정]</a>-->
+    <!--<a href='/delete/<%= p.id %>'>[삭제]</a>-->
+    <!--<br>-->
     
     <form action='/posts/<%= p.id %>/comments/create' method='post'>
       <p> ==================== COMMENTS ================</p>
       <% p.comments.all.each do |c| %>
         <%= c.comment %>
         <br>
-        <a href='/posts/<%= c.id %>/comments/delete'>[댓글삭제]</a>
+        <!--<a href='/posts/<%= c.id %>/comments/delete'>[댓글삭제]</a>-->
         <br>
       <% end %>
       <p> ==============================================</p>

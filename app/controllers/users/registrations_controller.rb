@@ -1,9 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  def new2
+  def new_facebook
   end
   
   def new
-    @user = User.new
   end
   
   def create

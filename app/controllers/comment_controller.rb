@@ -2,6 +2,7 @@ class CommentController < ApplicationController
   def create
     @comment = Comment.new
     @comment.post_id = params[:id]
+    @comment.user_id = current_user.id
     @comment.comment = params[:content]
     @comment.save
     redirect_to '/post/list'

@@ -4,19 +4,20 @@ class PostController < ApplicationController
   end
   
   def list
-    @posting = Post.all
+    @posting = Post.find(current_user.id)
     @comment = Comment.all
   end
   
   
   def create
-    
+  
     @posting = Post.new
     @posting.title = params[:p_title]
     @posting.book = params[:b_title]
     @posting.author = params[:b_author]
     @posting.posting = params[:posting]
     @posting.isPrivate = params[:isPrivate]
+    @posting.user_id = current_user.id
     
     @hashtag = params[:hash_tag].split("#")
     @hashtag.each do |tag|
@@ -40,9 +41,11 @@ class PostController < ApplicationController
   def delete
   end
   
-  def search_index
+  def show
   end
   
-  def show
+  def search_index  
+    # @posts = Post.where(title: params[:title], author: params[:author])
+       @posts = User.where(id: "2")
   end
 end
