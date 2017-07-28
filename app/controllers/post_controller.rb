@@ -4,21 +4,24 @@ class PostController < ApplicationController
   end
   
   def list
-    @posting = Post.find(current_user.id)
+#    @posting = Post.all
+    #@posting = Post.find(@userID)
     @comment = Comment.all
   end
   
   
   def create
-  
+    @userID = params[:userID]
+      
     @posting = Post.new
     @posting.title = params[:p_title]
     @posting.book = params[:b_title]
     @posting.author = params[:b_author]
     @posting.posting = params[:posting]
+
     @posting.isPrivate = params[:isPrivate]
-    @posting.user_id = current_user.id
-    
+    @posting.user_id = @userID
+                      
     @hashtag = params[:hash_tag].split("#")
     @hashtag.each do |tag|
         @ht = Hashtag.new

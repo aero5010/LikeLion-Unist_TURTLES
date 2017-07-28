@@ -1,17 +1,17 @@
 <h1>Post#list</h1>
 <p>Find me in app/views/post/list.html.erb</p>
 
-
+<% @posting = Post.find_by_user_id(current_user.id) %> 
 <% @posting.each do |p| %>
     <%= p.id %>
     <%= p.title %>
     <br>
     <%= p.book %> &nbsp&nbsp <%= p.author %>
     
-    <textarea>
+    <br>
+    <h2>
       <%= p.posting %>
-    </textarea>
-    
+    </h2>
     <br>
     
     <p>====hashtags====</p>

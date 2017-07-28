@@ -12,9 +12,14 @@
 </head>
 
 <body>
+    <%= current_user.id %>
+    
     <div class="container post-body">
         <%= form_tag "/post/create", method: :get do %>
             <div class="form-group input-groups">
+                
+                <input type="hidden" name="userID" value=<% current_user.id %>>    
+        
                 <input type="string" class="form-control input" name="p_title" placeholder="글 제목">
          
                 <div class="form-inline input align-right" > 
@@ -33,7 +38,6 @@
             <div class="align-right">
                 <button type="submit" class="btn ">등록</button>
             </div>
-            
             
         <% end %>
     </div>
